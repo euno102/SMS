@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SMS · AI Surgical Safety Platform</title>
+<style>
+  :root {
+    --bg: #0b1220;
+    --bg-alt: #101a2e;
+    --card: #16213a;
+    --text: #e8ecf4;
+    --muted: #9aa7bd;
+    --accent: #ffb020;
+    --accent-2: #3ddc97;
+    --border: #223252;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Pretendard, Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+  }
+  a { color: inherit; }
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+  header {
+    position: sticky;
+    top: 0;
+    background: rgba(11, 18, 32, 0.85);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    z-index: 10;
+  }
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 24px;
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+  .logo { font-weight: 700; font-size: 1.1rem; display: flex; align-items: center; gap: 8px; }
+  .logo-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 12px var(--accent); }
+  nav ul { list-style: none; display: flex; gap: 28px; }
+  nav a { color: var(--muted); text-decoration: none; font-size: 0.95rem; transition: color 0.2s; }
+  nav a:hover { color: var(--text); }
+
+  .hero {
+    text-align: center;
+    padding: 100px 24px 80px;
+    background: radial-gradient(circle at 50% 0%, var(--bg-alt), var(--bg) 60%);
+  }
+  .badge {
+    display: inline-block;
+    padding: 6px 14px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    color: var(--accent-2);
+    font-size: 0.8rem;
+    margin-bottom: 24px;
+    letter-spacing: 0.02em;
+  }
+  .hero h1 {
+    font-size: clamp(2rem, 5vw, 3.4rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+  }
+  .hero p.subtitle {
+    color: var(--muted);
+    font-size: 1.15rem;
+    max-width: 640px;
+    margin: 0 auto 36px;
+  }
+  .cta-group { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .btn {
+    padding: 14px 28px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 0.98rem;
+    text-decoration: none;
+    display: inline-block;
+    transition: transform 0.15s, opacity 0.15s;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn-primary { background: var(--accent); color: #1a1200; }
+  .btn-secondary { background: transparent; border: 1px solid var(--border); color: var(--text); }
+
+  section { padding: 80px 24px; }
+  .section-title { text-align: center; margin-bottom: 56px; }
+  .section-title h2 { font-size: 2rem; font-weight: 700; margin-bottom: 12px; }
+  .section-title p { color: var(--muted); max-width: 560px; margin: 0 auto; }
+
+  .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px;
+  }
+  .card .icon {
+    width: 42px; height: 42px;
+    border-radius: 10px;
+    background: rgba(255, 176, 32, 0.12);
+    color: var(--accent);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem;
+    margin-bottom: 18px;
+  }
+  .card h3 { font-size: 1.1rem; margin-bottom: 8px; }
+  .card p { color: var(--muted); font-size: 0.95rem; }
+
+  .how-it-works {
+    background: var(--bg-alt);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 32px; }
+  .step { text-align: center; }
+  .step .num {
+    width: 40px; height: 40px;
+    margin: 0 auto 16px;
+    border-radius: 50%;
+    background: var(--accent-2);
+    color: #052416;
+    font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .step h4 { margin-bottom: 8px; }
+  .step p { color: var(--muted); font-size: 0.92rem; }
+
+  .cta-final {
+    text-align: center;
+    background: linear-gradient(180deg, var(--bg), var(--bg-alt));
+  }
+  .cta-final h2 { font-size: 2rem; margin-bottom: 16px; }
+  .cta-final p { color: var(--muted); margin-bottom: 32px; }
+
+  footer {
+    padding: 32px 24px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.85rem;
+    border-top: 1px solid var(--border);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo"><span class="logo-dot"></span> SMS</div>
+    <ul>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#how">How it works</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <span class="badge">AI Surgical Safety · Early Warning</span>
+    <h1>Stop Hypotension<br>Before It Happens</h1>
+    <p class="subtitle">
+      AI 기반 수술 안전 예측 시스템, SMS입니다. 환자의 혈압을 실시간으로 분석해
+      다가올 저혈압을 미리 예측함으로써, 의사들이 뒤늦게 대처하는 대신
+      위험을 미리 파악하고 대비할 수 있도록 돕습니다.
+    </p>
+    <div class="cta-group">
+      <a href="#contact" class="btn btn-primary">Get Early Access</a>
+      <a href="#how" class="btn btn-secondary">See How It Works</a>
+    </div>
+  </div>
+</section>
+
+<section id="features">
+  <div class="container">
+    <div class="section-title">
+      <h2>왜 중요한가</h2>
+      <p>현재의 수술실 모니터는 이미 늦었을 때만 알려줍니다. SMS는 원시 활력징후 데이터를 조기 경보로 바꿉니다.</p>
+    </div>
+    <div class="grid-3">
+      <div class="card">
+        <div class="icon">💓</div>
+        <h3>실시간 모니터링</h3>
+        <p>수술 중 환자의 혈압과 활력징후를 실시간으로 추적해 이상 징후를 즉시 포착합니다.</p>
+      </div>
+      <div class="card">
+        <div class="icon">📈</div>
+        <h3>예측 분석</h3>
+        <p>실시간 혈압 데이터를 AI로 분석해, 임계 상황이 되기 전 다가올 저혈압을 정확히 예측합니다.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🔔</div>
+        <h3>사전 경고</h3>
+        <p>위험 임계값에 도달하기 전 의료진에게 미리 알려, 단순 경고음이 아닌 선제적 대응을 가능하게 합니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="how" class="how-it-works">
+  <div class="container">
+    <div class="section-title">
+      <h2>동작 방식</h2>
+      <p>실시간 혈압 데이터부터 사전 대응까지, 하나의 파이프라인으로 이어집니다.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="num">1</div>
+        <h4>데이터 수집</h4>
+        <p>수술 중 환자 모니터에서 혈압 등 활력징후 데이터를 실시간으로 수집합니다.</p>
+      </div>
+      <div class="step">
+        <div class="num">2</div>
+        <h4>패턴 분석</h4>
+        <p>AI 모델이 혈압 추이를 분석해 이상 패턴이 나타나는지 파악합니다.</p>
+      </div>
+      <div class="step">
+        <div class="num">3</div>
+        <h4>위험 예측</h4>
+        <p>실제로 저혈압이 발생하기 전, 위험 구간에 진입하고 있는지 미리 예측합니다.</p>
+      </div>
+      <div class="step">
+        <div class="num">4</div>
+        <h4>사전 대응</h4>
+        <p>의료진에게 미리 알려 위급 상황이 발생하기 전에 대응할 수 있도록 돕습니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="cta-final">
+  <div class="container">
+    <h2>SMS에 관심이 있으신가요?</h2>
+    <p>더 궁금한 점이 있으시면 연락 주시거나, GitHub에서 개발 현황을 확인해보세요.</p>
+    <a href="https://github.com/euno102/SMS" class="btn btn-primary">View on GitHub</a>
+  </div>
+</section>
+
+<footer>
+  &copy; 2026 SMS. All rights reserved.
+</footer>
+
+</body>
+</html>
