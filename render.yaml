@@ -2,7 +2,6 @@ services:
   - type: web
     name: smsf-frontend
     env: static
-    rootDir: SMSF-main
     buildCommand: npm install && npm run build
     staticPublishPath: build
     routes:
